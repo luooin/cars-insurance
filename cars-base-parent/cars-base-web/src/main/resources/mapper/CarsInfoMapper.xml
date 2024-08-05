@@ -1,0 +1,19 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luyifan.cars.mapper.CarsInfoMapper">
+    <select id="getList" resultType="com.luyifan.cars.model.entity.CarsInfo">
+        select m.*,mc.category_name from cars_info as m
+        inner join cars_category as mc on m.category_id = mc.category_id
+        where 1=1
+        <if test="parm.carName != '' and parm.carName != null">
+            and  m.car_name like CONCAT('%',#{parm.carName},'%')
+        </if>
+    </select>
+    <select id="discountRank" resultType="com.luyifan.cars.model.vo.home.EchartsItem">
+        select car_name as name, purchase_price as value from cars_info
+        order by purchase_price asc
+            limit 6
+    </select>
+</mapper>

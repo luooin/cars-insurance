@@ -1,0 +1,12 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luyifan.cars.mapper.CarsCategoryMapper">
+    <select id="getTotalCategory" resultType="com.luyifan.cars.model.vo.home.EchartsItem">
+        select mc.category_name as name,count(mi.car_id) as value from cars_category as mc
+            left join cars_info as mi  on mc.category_id = mi.category_id
+        GROUP BY mc.category_id,mc.category_name
+        order by mc.category_name asc
+    </select>
+</mapper>

@@ -1,0 +1,11 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luyifan.cars.mapper.CarInsuranceMapper">
+    <select id="getPriceRank" resultType="com.luyifan.cars.model.vo.home.EchartsItem">
+        select ci.real_price as value ,cf.car_name as name from car_insurance as ci
+            left join cars_info as cf  on ci.car_id = cf.car_id
+        order by ci.real_price asc
+    </select>
+</mapper>
